@@ -1,0 +1,13 @@
+- name: Ansible install apache  Local to Remote
+  hosts: all
+  tasks:
+    - name: install  apache package with playbook
+      become: true
+      command: "/opt/tomcat/test/test.sh"
+ #       src: /root/mytest.tar
+  #      dest: /opt/tomcat
+   #     remote_src: yes
+        
+        
+        
+

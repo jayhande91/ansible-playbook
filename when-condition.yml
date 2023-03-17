@@ -1,0 +1,21 @@
+- name: Install package  based on os_distrubution  to Remote
+  hosts: all
+  become: true
+
+  
+  tasks:
+    - name: install apache package when conditon match  
+      package:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: install httpd package based on os_ditribution 
+      package: 
+        name: httpd
+        state: present
+      
+      
+       
+    
+    

@@ -1,0 +1,18 @@
+- name: Ansible install apache  Local to Remote
+  hosts: 172.28.128.10
+  tasks:
+    - name: install  apache package with playbook
+      become: true
+      lineinfile:
+        #path: /etc/fstab
+        path: /root/myfirst.yml
+        #backup: yes
+        #line: 172.28.128.10 node1.ansiblenod1.com
+        line: 'Added Line for testing'
+        state: present
+       # insertbefore: BOF
+
+        #state: present # add the content to the file 
+#        state: absent # remove the contant from file
+        
+

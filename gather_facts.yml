@@ -1,0 +1,17 @@
+- name: Ansible install apache  Local to Remote
+  hosts: 172.28.128.10
+  become: true
+
+  
+  tasks:
+    - name: create Empty file 
+      file:
+        path: /usr/local2/fqdn
+        state: touch
+
+    - name: enter remote hostname in newly created file 
+      shell: echo {{ ansible_fqdn }} > /usr/local2/fqdn
+      
+       
+    
+    

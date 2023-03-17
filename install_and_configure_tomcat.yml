@@ -1,0 +1,51 @@
+
+ - name: Install and configure tomcat
+   hosts: 172.28.128.10
+   gather_facts: false
+   become: yes
+   vars:
+    req_java: java-1.8.0-openjdk
+    set_java: jre-1.8.0-openjdk 
+    #tomcat_url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.70/bin/apache-tomcat-8.5.70.tar.gz
+    tomcat_url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.zip
+    tomcat_version: 'apache-tomcat-8.5.81'
+   tasks:
+     - name: Downloading req tomcat and extract 
+       become: true 
+       get_url:
+         #url: "{{tomcat_url}}"
+         url: 'https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/{{ tomcat_version }}.zip'
+         dest: /tmp/
+     - name: Extract Downloaded pakage 
+       unarchive:
+         #src:  https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.zip
+         src: '/tmp/{{ tomcat_version }}.zip'
+         dest: /opt/tomcat
+         remote_src: yes
+         #extra_opts: [--strip-components=1] 
+     - name: update the the JAVA_HOME path
+       replace:
+         path: '/opt/tomcat/{{ tomcat_version }}/bin/setenv'
+         backup: yes
+         regexp: export JAVA_HOLE= ..~/Intraswitch/
+         replace: export JAVA_HOLE= /opt/tomcat/
+     - name: update application.json file 
+       copy:
+         backup: yes
+         src: /home/ansadmin/application.json
+         dest: /opt/tomcat/apache-tomcat-8.5.81/conf/application.json 
+     - name: insert/update contents of groupCustom.ini file
+       blockinfile:
+         path: /usr/local/Intraswitch/domains/groupCustom.ini
+         backup: yes
+         content: | 
+           This will update some parameters 
+           set.properties= failure=false
+           set.properties= numberOfpbx=560
+     - name: remove unwanted ansible block from file
+       lineinfile:
+         path: /usr/local/Intraswitch/domains/groupCustom.ini
+         line: # BEGIN ANSIBLE MANAGED BLOCK
+         state: absent
+
+         

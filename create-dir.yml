@@ -1,0 +1,15 @@
+- name: Ansible create directory  to Remote servers
+  hosts: all
+  become: true
+  tasks:
+    - name: create directory  test_dir with playbook
+      become: true
+      file:
+        dest: /root/test_dir
+       # state: directory # This will create user
+        state: absent # this remove  the httpd package
+        owner: psluser
+        group: psluser
+        mode: 755
+
+

@@ -1,0 +1,17 @@
+---
+- hosts: ubuntuservers
+  become: true
+  vars:
+    - Sname: apache2
+    - Sstate: present
+    - Sservice: started
+  tasks:
+    - name: Install {{ Sname }} web server
+      package: 
+           name: "{{ Sname }}"
+           state: "{{ Sstate }}"
+    - name: Start {{ Sname }} service
+      service:
+           name: "{{ Sname }}"
+           state: "{{ Sservice }}"
+    

@@ -1,0 +1,12 @@
+- name: Ansible install apache  Local to Remote
+  hosts: 172.28.128.10
+  tasks:
+    - name: install  apache package with playbook
+      become: true
+      replace:
+        path: /root/myfirst.yml
+        #backup: yes
+        regexp: This is second
+        replace: Added 3rd line
+        
+

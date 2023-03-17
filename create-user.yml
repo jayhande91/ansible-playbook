@@ -1,0 +1,11 @@
+- name: Ansible create user  psluser to Remote servers
+  hosts: all
+  tasks:
+    - name: create user psluser with playbook
+      become: true
+      user:
+        name: psluser
+        state: present # This will create user
+       # state: absent # this remove  the httpd package
+
+

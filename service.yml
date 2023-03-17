@@ -1,0 +1,10 @@
+- name: Ansible install apache  Local to Remote
+  hosts: webservers
+  tasks:
+    - name: install  apache package with playbook
+      become: true
+      service:
+        name: httpd
+       # state: started # This will start the server
+        state: stopped
+

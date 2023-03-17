@@ -1,0 +1,19 @@
+---
+- name: Install Redis
+  hosts: all
+  become: true
+  vars:
+    redis_port: 6379
+    redis_databases: 1
+  tasks:
+
+    - name: Ensure Redis is present
+      package: name=redis state=present
+     # sudo: true
+
+    - name: Ensure Redis is started
+      service: name=redis state=started 
+      #sudo: true
+
+   # - name: Ensure Redis Configuration
+      #template: src=redis.conf.j2 dest=/etc/redis/redis.conf owner=root group=root mode=0644

@@ -1,0 +1,25 @@
+---
+ - name: Ansible Blocks
+   hosts: 172.28.128.10
+   #gather_facts: false
+
+   tasks:
+     - block:
+        - debug: msg="1" 
+        - command: /bin/false
+
+        - debug: msg="2"
+        
+
+       rescue:
+        - debug: msg="3"
+        - command: /bin/false
+
+        - debug: msg="4"
+        
+            
+
+       always:
+        - debug: msg="5"
+          
+ 

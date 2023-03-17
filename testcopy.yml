@@ -1,0 +1,14 @@
+
+- name: Ansible Copy Example Local to Remote
+  hosts: all
+  tasks:
+    - name: copying file with playbook
+      become: true
+      copy:
+        content: "Welcome to this system."
+      # src:  /opt/playbook/myfile.txt
+        dest: /opt/tomcat/myfile.txt
+        owner: ansadmin
+        group: ansadmin
+        mode: 0644
+

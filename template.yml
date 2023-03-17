@@ -1,0 +1,11 @@
+- name: Add content of local file  to Remote
+  hosts: 172.28.128.10
+  become: yes
+  tasks:
+    - name: add content of myfie.txt to myfirst.yml
+      become: yes
+      template:
+        src: /opt/playbook/myfile.txt
+        dest: /root/myfirst.yml
+        
+

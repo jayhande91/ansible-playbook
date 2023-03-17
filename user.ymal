@@ -1,0 +1,11 @@
+- name: Ansible Copy Example Local to Remote
+  hosts: all
+  tasks:
+    - name: copying file with playbook
+      become: true
+      user:
+        name: test
+        group: users
+        password: "{{ 'mypassword' | password_hash('sha512') }}"
+        state: absent
+

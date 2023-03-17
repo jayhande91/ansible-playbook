@@ -1,0 +1,15 @@
+
+- name: Check file exist or not if not exist Ansible Copy file  to Remote
+  hosts: 172.28.128.10
+  become: yes 
+  tasks:
+    - name: cheking if fle exist 
+      become: true 
+      stat:
+        path: "/opt/tomcat/test.txt"
+      resister: file_data
+        
+      copy:
+        src:  /home/ansadmin/test.txt
+        dest: /opt/tomcat/
+        remote_src: no

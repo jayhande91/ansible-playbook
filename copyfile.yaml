@@ -1,0 +1,9 @@
+
+- name: Ansible Copy Example Local to Remote
+  hosts: all
+  tasks:
+    - name: copying file with playbook
+      become: true 
+      copy:
+        src:  /opt/playbook/webapp/target/webapp.war
+        dest: /opt/tomcat/apache-tomcat-8.5.61/webapps

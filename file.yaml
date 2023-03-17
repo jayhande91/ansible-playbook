@@ -1,0 +1,14 @@
+- name: Ansible install apache  Local to Remote
+  hosts: all
+  tasks:
+    - name: install  apache package with playbook
+      become: true
+      file:
+        path: /app
+        state: directory
+        owner: vagrant
+        group: vagrant
+        mode: 0660
+        state: absent
+        
+

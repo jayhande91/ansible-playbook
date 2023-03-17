@@ -1,0 +1,12 @@
+- name: Ansible install apache  Local to Remote
+  hosts: webservers
+  tasks:
+    - name: install  apache package with playbook
+      become: true
+      package:
+        name: httpd
+       # state: present # This will install package
+        state: absent # this remove  the httpd package
+       
+
+
